@@ -1,6 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
 
-const url = import.meta.env.VITE_SUPABASE_URL;
+// Accept both the project URL and an accidentally pasted REST URL. The
+// Supabase client appends /rest/v1 itself for database requests.
+const url = (import.meta.env.VITE_SUPABASE_URL ?? '')
+  .replace(/\/rest\/v1\/?$/, '')
+  .replace(/\/$/, '');
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const isSupabaseConfigured = Boolean(url && anonKey);
