@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background: #0f0e0d;
+    color: #f1e8d4;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ink font-sans text-cream antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+    letter-spacing: 0.005em;
+  }
+  ::selection {
+    background: #f8c53e;
+    color: #0f0e0d;
+  }
+  :focus-visible {
+    outline: 2px solid #f8c53e;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  button, a, input, textarea, select {
+    -webkit-tap-highlight-color: transparent;
+  }
+  input, textarea, select {
+    font-size: 16px; /* prevents iOS zoom on focus */
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
+
+@layer components {
+  /* Metallic gold foil, sampled from the logo */
+  .gold-text {
+    background-image: linear-gradient(180deg, #fde9ac 0%, #f8c53e 45%, #d99a14 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  .gold-line {
+    background-image: linear-gradient(90deg, transparent, #f8c53e, transparent);
+  }
+  .bg-jali {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23f8c53e' stroke-opacity='.11' stroke-width='1'%3E%3Cpath d='M28 3l25 25-25 25L3 28z'/%3E%3Cpath d='M28 15l13 13-13 13-13-13z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 56px 56px;
+  }
+  .bg-jali-faint {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23f8c53e' stroke-opacity='.06' stroke-width='1'%3E%3Cpath d='M28 3l25 25-25 25L3 28z'/%3E%3Cpath d='M28 15l13 13-13 13-13-13z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 56px 56px;
+  }
+  .arch {
+    border-top-left-radius: 9999px;
+    border-top-right-radius: 9999px;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-wide transition duration-200 select-none;
+    @apply disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-sm { @apply min-h-[40px] px-4 text-sm; }
+  .btn-md { @apply min-h-[48px] px-6 text-[15px]; }
+  .btn-lg { @apply min-h-[56px] px-8 text-base; }
+  .btn-gold {
+    @apply text-ink;
+    background-image: linear-gradient(180deg, #fbd875 0%, #f8c53e 50%, #e2a11a 100%);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset, 0 12px 30px -12px rgba(233, 168, 26, 0.7);
+  }
+  .btn-gold:hover:not(:disabled) {
+    filter: brightness(1.06);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 16px 36px -10px rgba(233, 168, 26, 0.85);
+  }
+  .btn-outline {
+    @apply border border-gold-500/60 text-gold-300 hover:border-gold-300 hover:bg-gold-500/10;
+  }
+  .btn-ghost {
+    @apply text-cream/80 hover:bg-white/5 hover:text-cream;
+  }
+  .btn-danger {
+    @apply border border-red-500/50 text-red-300 hover:bg-red-500/10;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-gold-500/25 bg-ink/60 px-4 py-3 text-cream placeholder:text-mute/60;
+    @apply transition focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-400/30;
+  }
+  .field-error {
+    @apply border-red-400/70 focus:border-red-400 focus:ring-red-400/30;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-cream/90;
+  }
+  .panel {
+    @apply rounded-2xl border border-gold-500/20 bg-coal/80;
+  }
+}
+
+/* Leader dots between menu item name and price */
+.leader {
+  flex: 1 1 auto;
+  min-width: 16px;
+  border-bottom: 1px dotted rgba(248, 197, 62, 0.35);
+  transform: translateY(-5px);
+}
